@@ -1,5 +1,5 @@
 ::msgcat::mcset ru "Whether the BNW plugin is loaded." "Загружено ли расширение для удобной работы с BNW."
 ::msgcat::mcset ru "BNW settings." "Параметры расширения для удобной работы с BNW"
 ::msgcat::mcset ru "Main BNW JID. This used for forwarding things from other chats." "Главный JID BNWача. Используется для перенаправления сущностей из других чатов."
-::msgcat::mcset ru "Ваш ник на BNW."
+::msgcat::mcset ru "Your BNW nickame." "Ваш ник на BNW."
 ::msgcat::mcset ru "Only private messages and replies to your comments is personal message." "Только приватные сообщения и ответы на ваши комментарии являются персональными сообщениями."
