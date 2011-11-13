@@ -2,6 +2,7 @@ package require msgcat
 
 option add *bnw.nick			red		widgetDefault
 option add *bnw.tag 			ForestGreen	widgetDefault
+option add *bnw.club 			orange	widgetDefault
 option add *bnw.my	    		gray		widgetDefault
 option add *bnw.number  		blue		widgetDefault
 option add *bnw.private_foreground	blue		widgetDefault
@@ -308,10 +309,12 @@ proc correct_command {chatid user body type} {
 proc configure_bnw {w} {
     set options(bnw.nick) [option get $w bnw.nick Text]
     set options(bnw.tag) [option get $w bnw.tag Text]
+    set options(bnw.club) [option get $w bnw.club Text]
     set options(bnw.my) [option get $w bnw.my Text]
 
     $w tag configure BNWNICK -foreground $options(bnw.nick)
     $w tag configure BNWTAG -foreground $options(bnw.tag)
+    $w tag configure BNWCLUB -foreground $options(bnw.club)
     $w tag configure BNWMY -foreground $options(bnw.my)
 }
 
@@ -343,7 +346,7 @@ proc spot_bnw_ligth {what at startVar endVar} {
 proc spot_bnw {what at startVar endVar} {
     # WTF IS THIS?
     set matched [regexp -indices -start $at -- \
-    {(?:\s|\n|\A|\(|\>)(@[\w@.-]+|\*[\w?!+'/.-]+)(?:(\.(\s|\n))?)} $what -> bounds]
+    {(?:\s|\n|\A|\(|\>)(@[\w@.-]+|[*!][\w?!+'/.-@]+)(?:(\.(\s|\n))?)} $what -> bounds]
 
     if {!$matched} { return false }
 
@@ -422,9 +425,13 @@ proc render_bnw {w type thing tags args} {
                  if {[cequal [string index $thing 0] "*" ]} {
                     set type BNWTAG
                     } else {
-                           if {[cequal [string index $thing 0] "@" ]} {
-                               set type BNWNICK
-                               }
+                           if {[cequal [string index $thing 0] "!" ]} {
+                               set type BNWCLUB
+                               } else {
+                                      if {[cequal [string index $thing 0] "@" ]} {
+                                        set type BNWNICK
+                                      }
+                                      }
                            }
                  }
     } else {
