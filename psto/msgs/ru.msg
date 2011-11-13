@@ -1,0 +1,5 @@
+::msgcat::mcset ru "Whether the Psto plugin is loaded." "Загружено ли расширение для удобной работы с Psto."
+::msgcat::mcset ru "Psto settings." "Параметры расширения для удобной работы с Psto"
+::msgcat::mcset ru "Main Psto JID. This used for forwarding things from other chats." "Главный JID Pstoача. Используется для перенаправления сущностей из других чатов."
+::msgcat::mcset ru "Your Psto nickame." "Ваш ник на Psto."
+::msgcat::mcset ru "Only private messages and replies to your comments is personal message." "Только приватные сообщения и ответы на ваши комментарии являются персональными сообщениями."
