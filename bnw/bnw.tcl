@@ -119,7 +119,7 @@ proc is_personal_bnw_message {from body} {
     set reply_to_my_comment 0
 
     set private_msg [regexp {^PM from @.+:\n} $body]
-    set reply_to_comment [regexp {Reply by @[^\n ]+:\n>.+\n\n@([^\n ]+) .+\n\n#\d?([A-Z]+\d*)+/\[A-Z0-9]+ \(\d+\) http://bnw.im/p/[A-Z0-9]+#[A-Z0-9]+$} $body -> reply_to_nick]
+    set reply_to_comment [regexp {Reply by @[^\n ]+:\n>.+\n\n@([^\n ]+) .+\n\n#\d*([A-Z]+\d*)+/\[A-Z0-9]+ \(\d+\) http://bnw.im/p/[A-Z0-9]+#[A-Z0-9]+$} $body -> reply_to_nick]
 
     if {$reply_to_comment} {
         set reply_to_my_comment [cequal $options(nick) $reply_to_nick]
@@ -221,7 +221,7 @@ proc rewrite_send_bnw_message {chatid user body type} {
         return
     }
 
-    if {[regexp {^S (#\d?([A-Z]+\d*)+)\+\s*$} $body -> thing]} {
+    if {[regexp {^S (#\d*([A-Z]+\d*)+)\+\s*$} $body -> thing]} {
         set xlib [chat::get_xlib $chatid]
         set jid [chat::get_jid $chatid]
 
@@ -357,7 +357,7 @@ proc spot_bnw {what at startVar endVar} {
 
 proc spot_bnw_numbers {what at startVar endVar} {
     set matched [regexp -indices -start $at -- \
-    {(?:\s|\n|\A|\(|\>)(#\d?([A-Z]+\d*)+(/[A-Z0-9]+)?)(?:(\.(\s|\n))?)} $what -> bounds]
+    {(?:\s|\n|\A|\(|\>)(#\d*([A-Z]+\d*)+(/[A-Z0-9]+)?)(?:(\.(\s|\n))?)} $what -> bounds]
     if {!$matched} { return false }
 
     upvar 1 $startVar uStart $endVar uEnd

@@ -30,7 +30,7 @@ if {![::plugins::is_registered psto]} {
                 [::msgcat::mc "Psto settings."] \
                 -group Plugins
 
-        custom::defvar options(main_jid) "psto@psto.net/psto" \
+        custom::defvar options(main_jid) "psto@psto.net/Psto" \
                 [::msgcat::mc "Main Psto JID. This used for forwarding things from other chats."] \
                 -group $group \
                 -type string
